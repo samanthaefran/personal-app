@@ -1,0 +1,85 @@
+---
+title: "Creating a database using PostgreSQL"
+date: "2022-02-05"
+hero_image: "./markus-spiske-Va9TCV57iRs-unsplash.jpg"
+hero_image_alt: "pls stop panicking "
+hero_image_credit_text: "markus spiske"
+hero_image_credit_link: "https://images.unsplash.com/photo-1650332908844-64be8b843dc2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1475&q=80"
+---
+
+_Why are databases important_? When we access our favorite applications like Twitter and Instagram, we are able to log into our accounts and access our posts and those of the accounts we follow. 
+
+The photos, comments, user information, etc. is data. To keep it available to everyone it needs to be stored somewhere so when I make a request to see Kanye West's Instagram profile I can see everything he's posted (that is, if he doesn't delete all of his posts for his next Yeezy campaign).
+
+If we think about what else would be stored in Instagram's databases we would start to get overwhelmed (and we have every right to be, it's a lot of data)! How can we store a large amount of information in a clean, concise way? We do this by creating a _relational_ database. 
+
+Relational databases are set up in tables, exactly the way we know them. You have rows and columns that are filled with the data we need. What makes them unique is that we can create multiple tables that all contain information related to one another and access them using IDs. At the end of this adventure we will have created a database with related tables and accessed the data.
+
+[Click here](https://postgresapp.com/downloads.html) to download PostgreSQL for Mac users.
+[Here](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart) to install if you are using Ubuntu. 
+
+
+To get started, we'll open the terminal and run: 
+![terminal-step-1](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/clqinkrq43nfd1ppukku.png)
+
+Okay, now we're rockin' and can create our first database! Here is the command we will write:
+
+```
+CREATE DATABASE bikes;
+```
+In order to see if your database was created enter \l and it will show you a list of your databases. Once you've confirmed we will run the following command to connect to our new database.
+
+```
+\c bikes
+```
+Okay! Time to create our Schema for the bikes database. The Schema here is going to be the foundation. This tells us what data we are trying to store.
+
+```
+CREATE TABLE models (
+ id serial PRIMARY KEY,
+ name varchar NOT NULL,
+ style varchar
+);
+```
+**Serial** is an integer that will allow us to create our IDs in sequential order (0, 1, 2, 3). **PRIMARY KEY** lets us know that this will be the key we use to identify the item in the table. **NOT NULL** means that there has to be information in this field, it cannot be empty. 
+
+Here is how to insert data into our table:
+
+```
+SELECT * FROM models;
+INSERT INTO models (name, style) VALUES ('Roscoe 7', 'MTB');
+```
+Phew! We entered in our first item! To double check that your item went in correctly, run SELECT * FROM models; again and that is how you can display your table.
+
+Okay, I realized that I can access the name and style of the bike I want, but I don't know what brand it is. Let's create a new table for it. 
+
+```
+CREATE TABLE brands(
+ id serial PRIMARY KEY,
+ name varchar NOT NULL,
+ models_id integer NOT NULL REFERENCES models (id)
+);
+```
+This table is very simple and allows for us to access the data in the _models_ table. 
+
+To insert data:
+
+```
+INSERT INTO brands (name, models_id) VALUES ('Trek', 1);
+SELECT * FROM brands;
+```
+We know how to see each table and its data, how can we show all the data from both tables we created? We do this with JOIN:
+
+```
+SELECT * 
+FROM models m
+LEFT JOIN brands b ON m.id = b.models_id;
+```
+The b and m are making abbreviations for the table names so I don't have to write it out.
+
+Ok! Snap, crackle, pop. That was fun! This is just the beginning of creating SQL databases in your terminal. You can also UPDATE and DELETE your items and even create more tables!
+
+I appreciate any and all feedback. That's how I become a better writer.  
+
+
+
