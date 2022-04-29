@@ -1,5 +1,5 @@
 ---
-title: "Unlearning in 2022"
+title: "Type Conversion in Python"
 date: "2021-07-24"
 hero_image: "./mikhail-volkov-fZjK5xOLYy4-unsplash.jpg"
 hero_image_alt: "just two guys talking"
@@ -7,4 +7,43 @@ hero_image_credit_text: "mikhail volkov"
 hero_image_credit_link: "https://images.unsplash.com/photo-1649940917590-a73e3c2f17e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1475&q=80"
 ---
 
-Here's another post! It's even better than the first one!
+Data types are usually one of the first lessons we have when learning a new programming language. Data types in Python would include:
+
+- String (str)
+
+- Numeric (int, float)
+
+- Sequence (list, tuple)
+
+Up until now, I've written in JavaScript and if I wanted to concatenate a _string_ that also included a _number_ it would be very simple. 
+
+You can easily write this into a JS file and return a string:
+
+```
+let age = 25;
+console.log('im yungbeansprout and im ' + age + ' years old');
+```
+Age is a number and this printed in the console as a complete string. This is because of _implicit type coercion_. JavaScript knows to turn the age into a string type. 
+
+If I wanted to do this exact task in Python, I would get a different response. Here's how to write it in Python:
+
+```
+age = 25
+print('im yungbeansprout and im ' + age + ' years old')
+```
+
+It would return an error like this:
+
+![string-error](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/o09sk8pyos3rjlopfuk7.png)
+
+This is where _type conversion_ comes in. Type conversion will allow us to turn our current data type (number) into a string so it can join the rest of his friends!
+
+Here is how we would fix this problem:
+
+```
+age = 25
+print('im yungbeansprout and im ' + str(age) + ' years old')
+```
+Notice how all I did was wrap age in parentheses and write str before it. In Python, this changes our data type.
+
+You can follow this same pattern when converting other data types and now you shouldn't have to worry about your strings returning any errors. Yay! 
