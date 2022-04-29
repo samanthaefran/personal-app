@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `samanthaFrangi.js`,
+    title: `samanthaFrangi`,
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
