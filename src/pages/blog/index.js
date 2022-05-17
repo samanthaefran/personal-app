@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link, graphql } from 'gatsby'
+import { blogLinksText, dateText } from "./blog.module.css"
 import Layout from '../../components/layout'
 
 const BlogPage = ({ data }) => {
@@ -9,12 +10,12 @@ const BlogPage = ({ data }) => {
        {
         data.allMdx.nodes.map((node) => (
           <article key={node.id}>
-            <h4>
-              <Link to={`/blog/${node.slug}`}>
+            <h5>
+              <Link to={`/blog/${node.slug}`} className={blogLinksText}>
               {node.frontmatter.title}
               </Link>
-              </h4>
-            <p>Posted: {node.frontmatter.date}</p>
+              </h5>
+            <p className={dateText}>{node.frontmatter.date}</p>
           </article>
         ))
       }
