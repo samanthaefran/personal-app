@@ -1,9 +1,9 @@
 .blog-links-text {
-  color: #f7b267; 
+  color: #e07a5f; 
 }
 
 .date-text {
-  font-size: medium;
+  font-size: medi;
 }
 
 .blog-links-text:link {
@@ -11,5 +11,5 @@
 }
 
 .blog-links-text:hover {
-  color: black;
+  color: #3d405b;
 }
